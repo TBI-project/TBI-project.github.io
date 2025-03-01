@@ -1,0 +1,22 @@
+.. TBI documentation master file, created by
+   sphinx-quickstart on Sat Mar  1 11:46:07 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to TBI's documentation!
+===============================
+
+**TBI** is a programming language written in `Python 3.12 <https://python.org>`_, and is designed to limit the programmer's accessibility to 
+common high-level features, some including *variables* and *functions*, forcing the developer to think more about how to preform common tasks with
+limited memory and resources.
+
+.. note::
+
+   This project is under active development. Expect things to change.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Basics
+   
+   registers
+   instructions

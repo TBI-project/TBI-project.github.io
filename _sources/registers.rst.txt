@@ -1,0 +1,60 @@
+Registers
+===============================
+
+In **TBI**, there are 8 *registers*, each having a specific purpose. Registers are the most important thing to remember when using **TBI**, as almost 
+every instruction takes registers as their arguments.
+
+What are registers?
+-------------------------------
+
+Registers are, in the most simplest form, are small, fast storage locations that hold data (and instructions). In **TBI**, you are given 8 registers.
+Each register has a purpose, although these purposes are more of a standard use case.
+The following is a list of all 8 registers' purposes:
+
+* 0: STDOUT
+* 1: STDIN
+* 2-5: Calculations and memory
+* 7-8: XY coordinates for ATP (no, not tennis)
+
+Special use registers
+-------------------------------
+
+STDOUT (0)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+STDOUT is used for displaying text to the user.
+
+.. code-block::
+   :caption: A program that prints text:
+
+   rg`0`Hello, world!
+   mv`0`stdout
+   su
+
+STDIN (1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+STDIN is used when you want to get data from the user.
+
+.. code-block::
+   :caption: A program that prints the user's input:
+
+   ri`1
+   ra`1`:NL:
+   mv`1`stdout
+   su
+
+X (6) & Y (7)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+X (6) & Y (7), are used to position the cursor on the screen.
+
+.. code-block::
+   :caption: A program that prints 'Hi!' at (5,5):
+
+   gm`1
+   rg`6`5
+   rg`7`5
+   rg`0`Hi!
+   mv`0`stdout
+   su

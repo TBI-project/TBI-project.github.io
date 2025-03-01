@@ -1,0 +1,240 @@
+Instructions
+===============================
+
+What are instructions?
+-------------------------------
+
+Instructions are what **TBI** when it's running your program. 
+Instructions are the fundamental building blocks of software, specifying the operations a processor needs to perform to run a program.
+All instuctions in **TBI** follow this format:
+
+.. code-block::
+
+    NAME`VALUE`VALUE
+
+.. note::
+
+   VALUE can be repeated indefinitely, but only the the first four values are used.
+
+Register & filesystem instructions
+-------------------------------
+
+rg (Register set)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**rg** sets the value of a register named REG to VAL.
+
+.. code-block::
+    :caption: Syntax:
+
+    rg`REG`VAL
+
+.. code-block::
+    :caption: Example:
+
+    # sets register 0 to Hello
+    rg`0`Hello
+
+ri (Input get)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**ri** sets the value of a register named REG to the user's input.
+
+.. code-block::
+    :caption: Syntax:
+
+    rg`REG
+
+.. code-block::
+    :caption: Example:
+
+    # sets register 1 to what the user enters
+    rg`1
+
+ra (Register append)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**ra** appends VAL to the value of a register named REG.
+
+.. code-block::
+    :caption: Syntax:
+
+    ra`REG`VAL
+
+.. code-block::
+    :caption: Example:
+
+    # adds a newline (:NL:) to register 1
+    ra`1`:NL:
+
+mv (Move to file)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**mv** sets the value of a file named FILE to the value of a register named REG.
+
+.. note::
+
+   **mv** is mainly used in conjunction with **su** for writing text to the screen.
+
+.. code-block::
+    :caption: Syntax:
+
+    mv`REG`FILE
+
+.. code-block::
+    :caption: Example:
+
+    # sets STDOUT to the value of register 0
+    mv`0`stdout
+
+gt (Get file)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**gt** gets the value of a file named FILE and sets the value of a register named REG to the file's contents.
+
+.. code-block::
+    :caption: Syntax:
+
+    gt`REG`FILE
+
+.. code-block::
+    :caption: Example:
+
+    # sets register 0 to the value of STDOUT
+    gt`0`stdout
+
+su (Write stdout)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**su** writes whatever is in the stdout file to the screen.
+
+.. code-block::
+    :caption: Syntax:
+
+    su
+
+Flow instructions
+-------------------------------
+
+jmp (Jump to)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**jmp** jumps back to a certain line of code, LINE, in the program.
+
+.. code-block::
+    :caption: Syntax:
+
+    jmp`LINE
+
+.. code-block::
+    :caption: Example:
+
+    # jumps to line 0
+    jmp`0
+
+if (If true)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**if**: if registers R1 & R2 equal eachother, then run the code contained between START and END.
+
+.. note::
+
+   If the specified registers are not equal, then the code located between START and END will be skipped.
+
+.. code-block::
+    :caption: Syntax:
+
+    if`START`END`R1`R2
+
+.. code-block::
+    :caption: Example:
+
+    # prints 'yes' if register 0 equals register 1
+    if`0`3`0`1
+    rg`0`yes
+    mv`0`stdout
+    su
+
+loop (Loop)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**loop** run the code contained between START and END indefinitely.
+
+.. note::
+
+   If **brk** is called, the loop will exit.
+
+.. code-block::
+    :caption: Syntax:
+
+    loop`START`END
+
+.. code-block::
+    :caption: Example:
+
+    # prints 'yes' indefinitely
+    loop`0`3
+    rg`0`yes
+    mv`0`stdout
+    su
+
+brk (Break loop)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**brk** breaks out of a loop.
+
+.. code-block::
+    :caption: Syntax:
+
+    brk
+
+ex (Exit program)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**ex** will show a prompt asking the user to exit the program.
+
+.. code-block::
+    :caption: Syntax:
+
+    ex
+
+Math instructions
+-------------------------------
+
+ng (Evaluate register)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**ng** evaluates VAL and sets the value of the register REG to the result.
+
+.. note::
+
+   **ng** also supports inserting registers into VAL.
+   The syntax is: *[r* **register** *]*
+     Example: [r1] or Register 1
+
+.. code-block::
+    :caption: Syntax:
+
+    ng`REG`VAL
+
+.. code-block::
+    :caption: Example:
+
+    # evaluates register 2, adds 66, and sets register 3 to the result
+    ng`3`[r2]+66
+
+mr (Random integer)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**mr** sets the value of the register REG to a random integer between MIN and MAX.
+
+.. code-block::
+    :caption: Syntax:
+
+    mr`REG`MIN`MAX
+
+.. code-block::
+    :caption: Example:
+
+    # sets register 0 to a random number between -4 and 4
+    mr`0`-4`4
