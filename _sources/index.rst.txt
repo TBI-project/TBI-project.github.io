@@ -10,6 +10,21 @@ Welcome to TBI's documentation!
 common high-level features, some including *variables* and *functions*, forcing the developer to think more about how to preform common tasks with
 limited memory and resources.
 
+You can download **TBI** `here <https://github.com/TBI-project/TBI-project.github.io/raw/refs/heads/main/CODE/main.py>`_.
+
+.. note::
+   These python modules are required by TBI to function:
+   
+   -  os (built-in)
+   -  random (built-in)
+   -  time (built-in)
+   -  py-term
+   -  termcolor
+   -  argparse
+
+   | You can install them with:
+   | ``pip install py-term termcolor argparse``
+
 .. note::
 
    This project is under active development. Expect things to change.
