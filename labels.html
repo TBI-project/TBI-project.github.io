@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; TBI 1.0.0 documentation</title>
+  <title>Labels &mdash; TBI 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -16,8 +17,10 @@
       <script src="_static/doctools.js?v=888ff710"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Instructions" href="instructions.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,10 +43,14 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Basics</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="registers.html">Registers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instructions.html">Instructions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="labels.html">Labels</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Labels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-labels">What are labels?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -64,8 +71,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">Labels</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/labels.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -73,17 +81,58 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section id="labels">
+<h1>Labels<a class="headerlink" href="#labels" title="Link to this heading"></a></h1>
+<section id="what-are-labels">
+<h2>What are labels?<a class="headerlink" href="#what-are-labels" title="Link to this heading"></a></h2>
+<p>Labels are sections of code that <strong>jmp</strong> can jump to.
+All labels in <strong>TBI</strong> follow this format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">NAME</span>
+<span class="o">..</span> <span class="n">code</span> <span class="n">here</span> <span class="o">..</span>
+<span class="p">:</span><span class="n">END</span>
+</pre></div>
 </div>
+<ul class="simple">
+<li><p><strong>:NAME:</strong> marks the beginning of your label.</p></li>
+<li><p><strong>:END:</strong> marks the end of your label.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>:NAME</strong> can never be the same as <strong>:END</strong>, as naming conflicts will occur.</p>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<p>You can use registers as parameters for labels, like in the example below.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Example that uses labels and parameters to save size:</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:PRINT
+# prints register 0 to the screen and appends newline
+ra`0`:NL:
+mv`0`stdout
+su
+:END
+
+# call :PRINT three times with r0 as the parameter
+rg`0`Example program
+jmp`:PRINT
+rg`0`there!
+jmp`:PRINT
+rg`0`Goodbye.
+jmp`:PRINT
+</pre></div>
+</div>
+</div>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="instructions.html" class="btn btn-neutral float-left" title="Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
