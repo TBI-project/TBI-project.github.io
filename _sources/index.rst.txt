@@ -6,7 +6,7 @@
 Welcome to TBI's documentation!
 ===============================
 
-**TBI** is a programming language written in `Python 3.12 <https://python.org>`_, and is designed to limit the programmer's accessibility to 
+**TBI** [#f1]_ is a programming language written in `Python 3.12 <https://python.org>`_, and is designed to limit the programmer's accessibility to 
 common high-level features, some including *variables* and *functions*, forcing the developer to think more about how to preform common tasks with
 limited memory and resources.
 
@@ -20,3 +20,14 @@ limited memory and resources.
    
    registers
    instructions
+   labels
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Examples
+   
+   examples
+   
+.. rubric:: Footnotes
+
+.. [#f1] For those people: **nope**, it's not Traumatic Brain Injury or the Tennessee Bureau of Investigation. (*sigh* Why do I have to say this?)

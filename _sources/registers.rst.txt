@@ -1,9 +1,6 @@
 Registers
 ===============================
 
-In **TBI**, there are 8 *registers*, each having a specific purpose. Registers are the most important thing to remember when using **TBI**, as almost 
-every instruction takes registers as their arguments.
-
 What are registers?
 -------------------------------
 
@@ -58,3 +55,4 @@ X (6) & Y (7), are used to position the cursor on the screen.
    rg`0`Hi!
    mv`0`stdout
    su
+   

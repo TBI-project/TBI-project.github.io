@@ -14,7 +14,7 @@ All instuctions in **TBI** follow this format:
 
 .. note::
 
-   VALUE can be repeated indefinitely, but only the the first four values are used.
+   VALUE can be repeated indefinitely, but **TBI** only uses the first four values.
 
 Register & filesystem instructions
 -------------------------------
@@ -67,6 +67,22 @@ ra (Register append)
     # adds a newline (:NL:) to register 1
     ra`1`:NL:
 
+rc (Register copy)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**rc** copys the value of register REG1 to another register named REG2.
+
+.. code-block::
+    :caption: Syntax:
+
+    rc`REG2`REG1
+
+.. code-block::
+    :caption: Example:
+
+    # copys register 1 to register 2
+    rc`2`1
+
 mv (Move to file)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -109,8 +125,11 @@ su (Write stdout)
 **su** writes whatever is in the stdout file to the screen.
 
 .. code-block::
-    :caption: Syntax:
+    :caption: Example:
 
+    # print Hello
+    rg`0`Hello
+    mv`0`stdout
     su
 
 Flow instructions
@@ -131,6 +150,29 @@ jmp (Jump to)
 
     # jumps to line 0
     jmp`0
+
+dl (Delay)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**dl** waits for the specified value of REG (in seconds).
+
+.. warning::
+
+   **dl** does not currently accept floating-point values.
+   Doing so will cause a NotImplemented error to occur.
+
+
+.. code-block::
+    :caption: Syntax:
+
+    jmp`LINE
+
+.. code-block::
+    :caption: Example:
+
+    # wait for 2 seconds
+    rg`2`2
+    dl`2
 
 if (If true)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -155,7 +197,7 @@ if (If true)
     mv`0`stdout
     su
 
-loop (Loop)
+lp (Loop)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **loop** run the code contained between START and END indefinitely.
@@ -167,13 +209,13 @@ loop (Loop)
 .. code-block::
     :caption: Syntax:
 
-    loop`START`END
+    lp`START`END
 
 .. code-block::
     :caption: Example:
 
     # prints 'yes' indefinitely
-    loop`0`3
+    lp`1`4
     rg`0`yes
     mv`0`stdout
     su
@@ -184,8 +226,11 @@ brk (Break loop)
 **brk** breaks out of a loop.
 
 .. code-block::
-    :caption: Syntax:
+    :caption: Example:
 
+    # do some math, then break loop
+    loop`1`3
+    ng`0`[r1]+54
     brk
 
 ex (Exit program)
@@ -193,9 +238,19 @@ ex (Exit program)
 
 **ex** will show a prompt asking the user to exit the program.
 
+.. image:: https://raw.githubusercontent.com/MuttsCanCode/muttscancode.github.io/refs/heads/main/hghg.png
+  :alt: Image of a prompt asking user to exit program
+
 .. code-block::
     :caption: Syntax:
 
+    ex
+
+.. code-block::
+    :caption: Example:
+
+    # do some math, then exit
+    ng`0`[r1]+54
     ex
 
 Math instructions
@@ -238,3 +293,4 @@ mr (Random integer)
 
     # sets register 0 to a random number between -4 and 4
     mr`0`-4`4
+

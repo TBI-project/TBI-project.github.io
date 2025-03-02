@@ -1,0 +1,44 @@
+Labels
+===============================
+
+What are labels?
+-------------------------------
+
+Labels are sections of code that **jmp** can jump to.
+All labels in **TBI** follow this format:
+
+.. code-block::
+
+    :NAME
+    .. code here ..
+    :END
+
+* **:NAME:** marks the beginning of your label.
+* **:END:** marks the end of your label.
+
+.. warning::
+
+   **:NAME** can never be the same as **:END**, as naming conflicts will occur.
+
+Parameters
+-------------------------------
+
+You can use registers as parameters for labels, like in the example below.
+
+.. code-block::
+    :caption: Example that uses labels and parameters to save size:
+
+    :PRINT
+    # prints register 0 to the screen and appends newline
+    ra`0`:NL:
+    mv`0`stdout
+    su
+    :END
+    
+    # call :PRINT three times with r0 as the parameter
+    rg`0`Example program
+    jmp`:PRINT
+    rg`0`there!
+    jmp`:PRINT
+    rg`0`Goodbye.
+    jmp`:PRINT

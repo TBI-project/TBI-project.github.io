@@ -1,0 +1,47 @@
+Examples
+===============================
+
+Hello, world!
+-------------------------------
+
+.. code-block::
+
+    rg`0`Hello, world!
+    mv`0`stdout
+    su
+
+Calculator
+-------------------------------
+
+.. code-block::
+
+    rg`0`Calculator:NL:
+    mv`0`stdout
+    su
+
+    ri`1
+    ng`2`[r1]
+    ra`2`:NL:
+    mv`2`stdout
+    su
+    jmp`3
+
+Random
+-------------------------------
+
+.. code-block::
+
+    rg`0`Random :NL:
+    mv`0`stdout
+    su
+
+    rg`3`-9999999
+    rg`2`9999999
+    mr`1`3`2
+    ra`1`:NL:
+    mv`1`stdout
+    su
+    rg`2`1
+    dl`2
+    jmp`5
+    

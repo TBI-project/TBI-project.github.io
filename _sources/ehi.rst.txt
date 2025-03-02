@@ -1,0 +1,29 @@
+Examples
+===============================
+
+.. code-block::
+
+    NAME`VALUE`VALUE
+
+.. note::
+
+   VALUE can be repeated indefinitely, but only the the first four values are used.
+
+Register & filesystem instructions
+-------------------------------
+
+rg (Register set)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**rg** sets the value of a register named REG to VAL.
+
+.. code-block::
+    :caption: Syntax:
+
+    rg`REG`VAL
+
+.. code-block::
+    :caption: Example:
+
+    # sets register 0 to Hello
+    rg`0`Hello
