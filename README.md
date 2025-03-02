@@ -1,1 +1,1 @@
-currently, this is where I have TBI's documentation stored at.
+Currently, this is where TBI's documentation and code are stored at.
